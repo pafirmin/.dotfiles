@@ -16,7 +16,7 @@ return {
 		lazy = true,
 		dependencies = { "rafamadriz/friendly-snippets" }, -- lots of snippets
 		config = function()
-			require("luasnip.loaders.from_vscode").lazy_load()
+			require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.fn.stdpath("config") .. "/snippets/" })
 		end,
 	},
 	{
@@ -27,8 +27,8 @@ return {
 	},
 	{
 		"windwp/nvim-ts-autotag", -- auto-close html/jsx tags
-		lazy = true,
-		event = "InsertEnter",
+		-- lazy = true,
+		-- event = "InsertEnter",
 		dependencies = "nvim-treesitter/nvim-treesitter",
 		config = function()
 			require("nvim-ts-autotag").setup()

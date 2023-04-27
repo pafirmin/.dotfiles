@@ -1,0 +1,32 @@
+{
+  "Functional component with props": {
+    "prefix": "rfcp",
+    "body": "interface Props {\n\t$2\n}\n\nconst ${TM_FILENAME_BASE} = ({ $1 }: Props) => {\n\treturn (\n\t\t<div>\n\t\t\t$3\n\t\t</div>\n\t)\n}\n\nexport default ${TM_FILENAME_BASE}"
+  },
+  "Functional component": {
+    "prefix": "rfc",
+    "body": "const ${TM_FILENAME_BASE} = () => {\n\treturn (\n\t\t<div>\n\t\t\t$1\n\t\t</div>\n\t)\n}\n\nexport default ${TM_FILENAME_BASE}"
+  },
+  "useState": {
+    "prefix": "us",
+    "body": "const [${1:val}, set${2:setterName}] = useState(${3:defVal})",
+    "description": "use state hook"
+  },
+  "useEffect": {
+    "prefix": "ue",
+    "body": ["useEffect(() => {", "\t$1", "}, [${3:dependencies}])$0"],
+    "description": "React useEffect() hook"
+  },
+  "useEffect with cleanup": {
+    "prefix": "uec",
+    "body": [
+      "useEffect(() => {",
+      "\t$1",
+      "\n\treturn () => {",
+      "\t\t$2",
+      "\t}",
+      "}, [${3:dependencies}])$0"
+    ],
+    "description": "React useEffect() hook with a cleanup function"
+  }
+}

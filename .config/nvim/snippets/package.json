@@ -1,0 +1,40 @@
+{
+  "name": "my-snippets",
+  "engine": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "typescriptreact"
+        ],
+        "path": "./ts-react.json"
+      },
+      {
+        "language": [
+          "typescript",
+          "typescriptreact"
+        ],
+        "path": "./typescript.json"
+      },
+      {
+        "language": "go",
+        "path": "./go.json"
+      },
+      {
+        "language": "lua",
+        "path": "./snippets/lua.json"
+      },
+      {
+        "language": [
+          "javascript",
+          "javascriptreact",
+          "vue",
+          "svelte"
+        ],
+        "path": "./snippets/javascript/javascript.json"
+      }
+    ]
+  }
+}
