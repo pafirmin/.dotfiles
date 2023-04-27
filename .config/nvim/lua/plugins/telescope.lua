@@ -16,6 +16,7 @@ local M = {
 		{ "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "status" },
 		{ "<leader>gb", "<cmd>Telescope git_branches<CR>", desc = "branch" },
 		{ "<leader>l", "<cmd>Telescope live_grep<CR>", desc = "live grep" },
+		{ "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "live grep" },
 	},
 	dependencies = { "nvim-telescope/telescope-media-files.nvim" },
 	opts = {
