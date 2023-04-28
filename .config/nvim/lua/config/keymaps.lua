@@ -58,10 +58,11 @@ keymap("v", ">", ">gv", opts(""))
 keymap("v", "p", '"_dP', opts(""))
 
 -- if you know you know
-vim.api.nvim_create_user_command("Wq", ":wq<cr>", { nargs = 0 })
-vim.api.nvim_create_user_command("Wqa", ":wqa<cr>", { nargs = 0 })
-vim.api.nvim_create_user_command("W", ":w<cr>", { nargs = 0 })
-vim.api.nvim_create_user_command("Wa", ":wqa<cr>", { nargs = 0 })
-vim.api.nvim_create_user_command("Q", ":wqa<cr>", { nargs = 0 })
-vim.api.nvim_create_user_command("Qa", ":wqa<cr>", { nargs = 0 })
+vim.api.nvim_create_user_command("Wq", "wq", { nargs = 0 })
+vim.api.nvim_create_user_command("Wqa", "wqa", { nargs = 0 })
+vim.api.nvim_create_user_command("W", "w", { nargs = 0 })
+vim.api.nvim_create_user_command("Wa", "wa", { nargs = 0 })
+vim.api.nvim_create_user_command("Q", "q", { nargs = 0 })
+vim.api.nvim_create_user_command("Qa", "qa", { nargs = 0 })
+
 vim.keymap.set({ "n", "x", "o" }, "X", "<Plug>(leap-backward-to)")
