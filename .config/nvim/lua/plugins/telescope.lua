@@ -18,7 +18,6 @@ local M = {
 		{ "<leader>l", "<cmd>Telescope live_grep<CR>", desc = "live grep" },
 		{ "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "live grep" },
 	},
-	dependencies = { "nvim-telescope/telescope-media-files.nvim" },
 	opts = {
 		defaults = {
 			prompt_prefix = " ",
@@ -104,7 +103,6 @@ local M = {
 		}
 
 		telescope.setup(opts)
-		telescope.load_extension("media_files")
 	end,
 }
 

@@ -6,17 +6,16 @@ local keymap = vim.keymap.set
 
 keymap("", "Y", "y$", opts("Yank to end of line"))
 
--- -- window navigation (currently handled by tmux.nvim)
 -- keymap("n", "<C-h>", "<C-w>h", opts("Left one window"))
 -- keymap("n", "<C-j>", "<C-w>j", opts("Right one window"))
 -- keymap("n", "<C-k>", "<C-w>k", opts("Up one window"))
 -- keymap("n", "<C-l>", "<C-w>l", opts("Down on window"))
---
--- -- resize with arrows
--- keymap("n", "<C-Up>", ":resize +2<CR>", opts("Increase vertical window size"))
--- keymap("n", "<C-Down>", ":resize -2<CR>", opts("Descrease vertical window size"))
--- keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts("Decrease horizontal window size"))
--- keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts("Increase horizontal window size"))
+
+-- resize with arrows
+keymap("n", "<C-Up>", ":resize +2<CR>", opts("Increase vertical window size"))
+keymap("n", "<C-Down>", ":resize -2<CR>", opts("Descrease vertical window size"))
+keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts("Decrease horizontal window size"))
+keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts("Increase horizontal window size"))
 
 -- Nvim-Tree
 keymap("n", "<leader>\\", ":NvimTreeToggle toggle<CR>", opts("Open Nvim Tree"))
