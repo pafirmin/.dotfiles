@@ -51,4 +51,13 @@ return {
 			require("leap").add_default_mappings()
 		end,
 	},
+	{
+		"iamcco/markdown-preview.nvim",
+		lazy = true,
+		ft = "markdown",
+		cmd = "MarkdownPreview",
+		build = function()
+			vim.fn["mkdp#util#install"]()
+		end,
+	},
 }

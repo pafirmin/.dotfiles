@@ -143,6 +143,11 @@ local M = {
 			window = {
 				documentation = cmp.config.window.bordered(),
 			},
+			performance = {
+				trigger_debounce_time = 500,
+				fetching_timeout = 80,
+				throttle = 550,
+			},
 			experimental = {
 				ghost_text = false,
 				native_menu = false,
