@@ -7,6 +7,7 @@ local servers = {
 	"pyright",
 	"jsonls",
 	"emmet_ls",
+	"clojure_lsp",
 }
 
 local mason_packages = {
@@ -22,7 +23,7 @@ return {
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"williamboman/mason-lspconfig.nvim",
-			"jose-elias-alvarez/typescript.nvim",
+			"pmizio/typescript-tools.nvim",
 			"williamboman/mason.nvim",
 		},
 		config = function(_, _)
@@ -36,27 +37,37 @@ return {
 				automatic_installation = true,
 			})
 
+			local opts = {
+				on_attach = handlers.on_attach,
+				capabilities = handlers.capabilities,
+			}
+
 			mason_lspconfig.setup_handlers({
 				function(server_name)
-					local opts = {
-						on_attach = handlers.on_attach,
-						capabilities = handlers.capabilities,
-					}
-					local require_ok, conf_opts = pcall(require, "plugins.lsp.settings." .. server_name)
-					if require_ok then
+					local ok, conf_opts = pcall(require, "plugins.lsp.settings." .. server_name)
+					if ok then
 						opts = vim.tbl_deep_extend("force", conf_opts, opts)
 					end
 					lspconfig[server_name].setup(opts)
 				end,
 				["tsserver"] = function()
-					require("typescript").setup({
-						server = {
-							on_attach = handlers.on_attach,
-							capabilities = handlers.capabilities,
-						},
-					})
+					--noop: handled by typescript-tools.nvim
 				end,
 			})
+		end,
+	},
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {
+			on_attach = require("plugins.lsp.handlers").on_attach,
+			capabilities = require("plugins.lsp.handlers").capabilities,
+			settings = {
+				expose_as_code_action = "all",
+			},
+		},
+		config = function(_, opts)
+			require("typescript-tools").setup(opts)
 		end,
 	},
 	{
@@ -96,24 +107,22 @@ return {
 		end,
 	},
 	{
-		"jose-elias-alvarez/null-ls.nvim",
+		"nvimtools/none-ls.nvim",
 		lazy = true,
 		event = { "BufReadPre", "BufNewFile" },
-		dependencies = { "jose-elias-alvarez/typescript.nvim" },
 		opts = {
 			debug = false,
 		},
 		config = function(_, opts)
 			local null_ls = require("null-ls")
-			local ts_actions = require("typescript.extensions.null-ls.code-actions")
 			-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
 			local code_actions = null_ls.builtins.code_actions
 			local formatting = null_ls.builtins.formatting
 			local diagnostics = null_ls.builtins.diagnostics
 
 			opts.sources = {
-				ts_actions,
-				formatting.prettierd,
+				formatting.prettierd.with({ extra_filetypes = { "astro" } }),
+				formatting.black.with({ extra_args = { "--line-length=120" } }),
 				formatting.stylua,
 				formatting.gofmt,
 				code_actions.eslint_d,

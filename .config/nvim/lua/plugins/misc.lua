@@ -5,9 +5,10 @@ return {
 	{ "tpope/vim-repeat" }, -- repeat plugin-specific commands with '.'
 	{ "tpope/vim-surround" }, -- keymaps for surrounding text
 	{ "tpope/vim-speeddating" }, -- easily change dates
-	{ "kevinhwang91/nvim-bqf" },
+	{ "kevinhwang91/nvim-bqf" }, -- better quickfix menu
+	{ "Olical/conjure", lazy = true, ft = "clojure" },
 	{
-		"alexghergh/nvim-tmux-navigation",
+		"alexghergh/nvim-tmux-navigation", -- navigate between tmux panes and vim windows
 		opts = {
 			disable_when_zoomed = true, -- defaults to false
 			keybindings = {
@@ -24,6 +25,13 @@ return {
 		end,
 	},
 	{
+		"aserowy/tmux.nvim",
+		enabled = false,
+		config = function()
+			return require("tmux").setup({ copy_sync = { enabled = false } })
+		end,
+	},
+	{
 		"L3MON4D3/LuaSnip", -- snippet engine
 		lazy = true,
 		config = function()
@@ -31,9 +39,12 @@ return {
 		end,
 	},
 	{
-		"lukas-reineke/indent-blankline.nvim", -- show horizontal lines at indents
-		config = function()
-			require("indent_blankline").setup()
+		"lukas-reineke/indent-blankline.nvim", -- show verticle lines at indents
+		-- enabled = false,
+		main = "ibl",
+		opts = { scope = { show_start = false, show_end = false } },
+		config = function(_, opts)
+			require("ibl").setup(opts)
 		end,
 	},
 	{

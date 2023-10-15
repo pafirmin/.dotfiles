@@ -65,15 +65,39 @@ return {
 			invert_intend_guides = false,
 			inverse = true, -- invert background for search, diffs, statuslines and errors
 			contrast = "soft", -- can be "hard", "soft" or empty string
-			palette_overrides = {},
+			palette_overrides = {
+				light1 = "#d5c4a1",
+			},
 			overrides = {},
 			dim_inactive = false,
 			transparent_mode = false,
 		},
 		config = function(_, opts)
-			require("gruvbox").setup(opts)
+			local colors = require("gruvbox").palette
+			opts.overrides = {
+				Function = { fg = colors.bright_aqua },
+				Keyword = { fg = colors.bright_red, italic = true },
+				Tag = { fg = colors.bright_red },
+				Conceal = { fg = colors.gray },
+			}
 
+			require("gruvbox").setup(opts)
 			vim.cmd("colorscheme gruvbox")
+		end,
+	},
+	{
+		"eddyekofo94/gruvbox-flat.nvim",
+		priority = 1000,
+		enabled = false,
+		opts = {
+			gruvbox_theme = {
+				TSProperty = { fg = "aqua" },
+				TSParameter = { fg = "fg_light" },
+			},
+		},
+		config = function(_, opts)
+			vim.g.gruvbox_theme = opts.gruvbox_theme
+			vim.cmd("colorscheme gruvbox-flat")
 		end,
 	},
 }
