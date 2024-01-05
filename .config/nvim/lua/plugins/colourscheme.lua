@@ -76,9 +76,10 @@ return {
 			local colors = require("gruvbox").palette
 			opts.overrides = {
 				Function = { fg = colors.bright_aqua },
-				Keyword = { fg = colors.bright_red, italic = true },
+				Keyword = { fg = colors.bright_red },
 				Tag = { fg = colors.bright_red },
 				Conceal = { fg = colors.gray },
+				Qualifier = { fg = colors.bright_red },
 			}
 
 			require("gruvbox").setup(opts)

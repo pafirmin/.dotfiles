@@ -23,7 +23,6 @@ return {
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"williamboman/mason-lspconfig.nvim",
-			"pmizio/typescript-tools.nvim",
 			"williamboman/mason.nvim",
 		},
 		config = function(_, _)
@@ -58,6 +57,8 @@ return {
 	},
 	{
 		"pmizio/typescript-tools.nvim",
+		lazy = true,
+		ft = { "typescript", "typescriptreact" },
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 		opts = {
 			on_attach = require("plugins.lsp.handlers").on_attach,

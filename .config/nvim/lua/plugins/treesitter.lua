@@ -14,22 +14,9 @@ local M = {
 			disable = { "" }, -- list of language that will be disabled
 			additional_vim_regex_highlighting = false,
 		},
-		autotag = { enable = true },
+		autotag = { enable = true, enable_close_on_slash = false },
 		autopairs = { enable = true },
 		indent = { enable = true, disable = { "yaml" } },
-		context_commentstring = {
-			enable = true,
-			enable_autocmd = false,
-			config = {
-				typescript = {
-					__default = "// %s",
-					jsx_element = "{/* %s */}",
-					jsx_fragment = "{/* %s */}",
-					jsx_attribute = "// %s",
-					comment = "// %s",
-				},
-			},
-		},
 	},
 	config = function(_, opts)
 		require("nvim-treesitter.configs").setup(opts)

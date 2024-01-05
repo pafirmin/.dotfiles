@@ -10,6 +10,13 @@ keymap("", "Y", "y$", opts("Yank to end of line"))
 -- keymap("n", "<C-j>", "<C-w>j", opts("Right one window"))
 -- keymap("n", "<C-k>", "<C-w>k", opts("Up one window"))
 -- keymap("n", "<C-l>", "<C-w>l", opts("Down on window"))
+--
+keymap(
+	"n",
+	"<leader>gg",
+	"<cmd>!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit <CR><CR>",
+	opts("opens lazygit")
+)
 
 -- resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>", opts("Increase vertical window size"))
