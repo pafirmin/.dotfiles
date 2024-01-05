@@ -1,0 +1,42 @@
+import = [
+  "~/.config/alacritty/colours/gruvbox.toml",
+  "~/.config/alacritty/fonts/jetbrains-mono.toml",
+]
+
+[cursor]
+blink_interval = 550
+blink_timeout = 0
+
+[cursor.style]
+blinking = "Always"
+shape = "Block"
+
+[env]
+TERM = "alacritty"
+
+[font]
+size = 10.0
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "Space"
+mode = "~Search"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "Return"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "CreateNewWindow"
+key = "N"
+mods = "Control|Shift"
+
+[window]
+decorations = "full"
+opacity = 0.95
+
+[window.dimensions]
+columns = 85
+lines = 22

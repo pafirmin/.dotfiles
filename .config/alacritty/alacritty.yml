@@ -779,6 +779,9 @@ cursor:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
+commands:
+  - { name: SpawnNewInstance, command: alacritty & disown }
+
 key_bindings:
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
@@ -791,6 +794,8 @@ key_bindings:
 
   # Vi Mode
   - { key: Space, mods: Control, mode: ~Search, action: ToggleViMode }
+  # Spawn new instance
+  - { key: Return, mods: Control, action: SpawnNewInstance }
   #- { key: Space,  mods: Shift|Control, mode: ~Search,    action: ToggleViMode            }
   #- { key: Space,  mods: Shift|Control, mode: Vi|~Search, action: ScrollToBottom          }
   #- { key: Escape,                      mode: Vi|~Search, action: ClearSelection          }
