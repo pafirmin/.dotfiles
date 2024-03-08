@@ -13,6 +13,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 path+=('/home/paul/.local/share/gem/ruby/3.0.0/bin')
+path+=('/usr/local/go/bin')
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/paul/.oh-my-zsh"
@@ -93,8 +94,6 @@ plugins=(
   zsh-nvm
 )
 
-. /home/paul/z/z.sh
-
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -125,16 +124,6 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR='vim'
 
-function kp() {
-  if [ "$#" -eq 1 ]
-  then 
-    keepassxc-cli "$1" ~/Documents/NewDatabase.kdbx 
-  else
-    array=${@:1:-1}
-    keepassxc-cli $array ~/Documents/NewDatabase.kdbx "$@[-1]"
-  fi
-}
-
 function sortdate() {
   if read -q "choice?Are you sure? "; then
     find . -type f -exec \
@@ -159,3 +148,7 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
 [ -f "/home/paul/.ghcup/env" ] && source "/home/paul/.ghcup/env" # ghcup-env
+
+eval "$(zoxide init zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
