@@ -5,8 +5,8 @@ return {
 	{ "tpope/vim-repeat" }, -- repeat plugin-specific commands with '.'
 	{ "tpope/vim-surround" }, -- keymaps for surrounding text
 	{ "tpope/vim-speeddating" }, -- easily change dates
-	{ "kevinhwang91/nvim-bqf" }, -- better quickfix menu
-	{ "Olical/conjure", lazy = true, ft = "clojure" },
+	{ "kevinhwang91/nvim-bqf", lazy = true, ft = "qf" }, -- better quickfix menu
+	{ "mbbill/undotree" },
 	{
 		"alexghergh/nvim-tmux-navigation", -- navigate between tmux panes and vim windows
 		opts = {
@@ -50,7 +50,9 @@ return {
 	},
 	{
 		"windwp/nvim-ts-autotag", -- auto-close html/jsx tags
+		lazy = true,
 		dependencies = "nvim-treesitter/nvim-treesitter",
+		ft = { "html", "typescriptreact" },
 		config = function()
 			require("nvim-ts-autotag").setup()
 		end,

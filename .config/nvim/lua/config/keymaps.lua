@@ -18,6 +18,10 @@ keymap(
 	opts("opens lazygit")
 )
 
+keymap("n", "<leader>u", vim.cmd.UndotreeToggle, opts("Toggle UndoTree"))
+
+keymap("n", "q:", "<nop>", opts("i hate this thing so much"))
+
 -- resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>", opts("Increase vertical window size"))
 keymap("n", "<C-Down>", ":resize -2<CR>", opts("Descrease vertical window size"))
@@ -26,6 +30,7 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts("Increase horizontal wi
 
 -- Nvim-Tree
 keymap("n", "<leader>\\", ":NvimTreeToggle toggle<CR>", opts("Open Nvim Tree"))
+keymap("n", "|", ":NvimTreeToggle toggle<CR>", opts("Open Nvim Tree"))
 
 -- navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts("Next buffer"))

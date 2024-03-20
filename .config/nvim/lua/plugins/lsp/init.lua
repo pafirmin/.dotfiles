@@ -65,6 +65,9 @@ return {
 			capabilities = require("plugins.lsp.handlers").capabilities,
 			settings = {
 				expose_as_code_action = "all",
+				tsserver_plugins = {
+					"@styled/typescript-styled-plugin",
+				},
 			},
 		},
 		config = function(_, opts)
@@ -117,7 +120,6 @@ return {
 		config = function(_, opts)
 			local null_ls = require("null-ls")
 			-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
-			local code_actions = null_ls.builtins.code_actions
 			local formatting = null_ls.builtins.formatting
 			local diagnostics = null_ls.builtins.diagnostics
 
@@ -125,14 +127,9 @@ return {
 				formatting.prettierd.with({ extra_filetypes = { "astro" } }),
 				formatting.black.with({ extra_args = { "--line-length=120" } }),
 				formatting.stylua,
-				formatting.gofmt,
-				code_actions.eslint_d,
-				diagnostics.jsonlint.with({ filetypes = { "json", "jsonc" } }),
-				diagnostics.eslint_d.with({
-					condition = function(utils)
-						return utils.root_has_file({ ".eslintrc.js", ".eslintrc.json", ".eslintrc.cjs" })
-					end,
-				}),
+				formatting.goimports,
+				formatting.yamlfmt,
+				diagnostics.cfn_lint,
 			}
 
 			null_ls.setup(opts)

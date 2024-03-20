@@ -1,6 +1,6 @@
 local util = require("lspconfig.util")
 local async = require("lspconfig.async")
-local mod_cache = "/root/go/pkg/mod"
+local mod_cache = "/home/paul/go/pkg/mod"
 
 return {
 	root_dir = function(fname)

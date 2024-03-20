@@ -70,6 +70,10 @@ local M = {
 					luasnip.lsp_expand(args.body) -- For `luasnip` users.
 				end,
 			},
+			preselect = cmp.PreselectMode.None,
+			completion = {
+				completeopt = "menu,menuone,noselect",
+			},
 			mapping = {
 				["<C-k>"] = cmp.mapping.select_prev_item(),
 				["<C-j>"] = cmp.mapping.select_next_item(),
@@ -96,10 +100,7 @@ local M = {
 					else
 						fallback()
 					end
-				end, {
-					"i",
-					"s",
-				}),
+				end, { "i", "s" }),
 				["<S-Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item()
@@ -108,10 +109,7 @@ local M = {
 					else
 						fallback()
 					end
-				end, {
-					"i",
-					"s",
-				}),
+				end, { "i", "s" }),
 			},
 			formatting = {
 				fields = { "kind", "abbr", "menu" },
