@@ -20,7 +20,7 @@ keymap(
 
 keymap("n", "<leader>u", vim.cmd.UndotreeToggle, opts("Toggle UndoTree"))
 
-keymap("n", "q:", "<nop>", opts("i hate this thing so much"))
+keymap("n", "q:", "<nop>", opts(""))
 
 -- resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>", opts("Increase vertical window size"))
@@ -28,9 +28,16 @@ keymap("n", "<C-Down>", ":resize -2<CR>", opts("Descrease vertical window size")
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts("Decrease horizontal window size"))
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts("Increase horizontal window size"))
 
+keymap(
+	"n",
+	"gx",
+	[[:silent execute '!firefox ' . shellescape(expand('<cfile>'), 1)<CR>]],
+	opts("Open link under cursor in broser")
+)
+
 -- Nvim-Tree
-keymap("n", "<leader>\\", ":NvimTreeToggle toggle<CR>", opts("Open Nvim Tree"))
-keymap("n", "|", ":NvimTreeToggle toggle<CR>", opts("Open Nvim Tree"))
+-- keymap("n", "<leader>\\", ":Oil --float<CR>", opts("Open Nvim Tree"))
+-- keymap("n", "|", ":Oil --float<CR>", opts("Open Nvim Tree"))
 
 -- navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts("Next buffer"))
@@ -68,7 +75,6 @@ keymap("v", ">", ">gv", opts(""))
 -- maintain yanked text on visual mode put
 keymap("v", "p", '"_dP', opts(""))
 
--- if you know you know
 vim.api.nvim_create_user_command("Wq", "wq", { nargs = 0 })
 vim.api.nvim_create_user_command("Wqa", "wqa", { nargs = 0 })
 vim.api.nvim_create_user_command("W", "w", { nargs = 0 })

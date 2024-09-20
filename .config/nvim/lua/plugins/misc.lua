@@ -1,12 +1,17 @@
 return {
-	-- { "fatih/vim-go", lazy = true, ft = "go" }, -- GoLang utils
 	{ "nvim-lua/plenary.nvim", lazy = true }, -- window utils, used by other plugins
+	{ "folke/neodev.nvim" },
 	{ "tpope/vim-fugitive" }, -- use git from inside nvim
 	{ "tpope/vim-repeat" }, -- repeat plugin-specific commands with '.'
 	{ "tpope/vim-surround" }, -- keymaps for surrounding text
 	{ "tpope/vim-speeddating" }, -- easily change dates
-	{ "kevinhwang91/nvim-bqf", lazy = true, ft = "qf" }, -- better quickfix menu
 	{ "mbbill/undotree" },
+	{
+		dir = "/home/paul/Documents/code/go-cmd-nvim",
+		config = function(_, _)
+			require("gocmd").setup()
+		end,
+	},
 	{
 		"alexghergh/nvim-tmux-navigation", -- navigate between tmux panes and vim windows
 		opts = {
@@ -20,16 +25,6 @@ return {
 				next = "<C-Space>",
 			},
 		},
-		config = function(_, opts)
-			require("nvim-tmux-navigation").setup(opts)
-		end,
-	},
-	{
-		"aserowy/tmux.nvim",
-		enabled = false,
-		config = function()
-			return require("tmux").setup({ copy_sync = { enabled = false } })
-		end,
 	},
 	{
 		"L3MON4D3/LuaSnip", -- snippet engine
@@ -40,22 +35,16 @@ return {
 		end,
 	},
 	{
-		"lukas-reineke/indent-blankline.nvim", -- show verticle lines at indents
-		-- enabled = false,
+		"lukas-reineke/indent-blankline.nvim", -- show vertical lines at indents
 		main = "ibl",
 		opts = { scope = { show_start = false, show_end = false } },
-		config = function(_, opts)
-			require("ibl").setup(opts)
-		end,
 	},
 	{
 		"windwp/nvim-ts-autotag", -- auto-close html/jsx tags
 		lazy = true,
 		dependencies = "nvim-treesitter/nvim-treesitter",
 		ft = { "html", "typescriptreact" },
-		config = function()
-			require("nvim-ts-autotag").setup()
-		end,
+		config = true,
 	},
 	{
 		"ggandor/leap.nvim", -- easily jump around files

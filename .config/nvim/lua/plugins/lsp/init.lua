@@ -8,11 +8,7 @@ local servers = {
 	"jsonls",
 	"emmet_ls",
 	"clojure_lsp",
-}
-
-local mason_packages = {
-	"prettierd",
-	"eslint_d",
+	"yamlls",
 }
 
 return {
@@ -42,6 +38,7 @@ return {
 			}
 
 			mason_lspconfig.setup_handlers({
+				-- default handler
 				function(server_name)
 					local ok, conf_opts = pcall(require, "plugins.lsp.settings." .. server_name)
 					if ok then
@@ -49,16 +46,15 @@ return {
 					end
 					lspconfig[server_name].setup(opts)
 				end,
-				["tsserver"] = function()
-					--noop: handled by typescript-tools.nvim
-				end,
+				--noop: handled by typescript-tools.nvim
+				["tsserver"] = function() end,
 			})
 		end,
 	},
 	{
 		"pmizio/typescript-tools.nvim",
 		lazy = true,
-		ft = { "typescript", "typescriptreact" },
+		ft = { "typescript", "typescriptreact", "javascriptreact" },
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 		opts = {
 			on_attach = require("plugins.lsp.handlers").on_attach,
@@ -70,9 +66,6 @@ return {
 				},
 			},
 		},
-		config = function(_, opts)
-			require("typescript-tools").setup(opts)
-		end,
 	},
 	{
 		"williamboman/mason.nvim",
@@ -90,25 +83,6 @@ return {
 			log_level = vim.log.levels.INFO,
 			max_concurrent_installers = 4,
 		},
-		config = function(_, opts)
-			require("mason").setup(opts)
-			local mr = require("mason-registry")
-
-			local function ensure_installed()
-				for _, package in ipairs(mason_packages) do
-					local p = mr.get_package(package)
-					if not p:is_installed() then
-						p:install()
-					end
-				end
-			end
-
-			if mr.refresh then
-				mr.refresh(ensure_installed)
-			else
-				ensure_installed()
-			end
-		end,
 	},
 	{
 		"nvimtools/none-ls.nvim",
@@ -124,7 +98,7 @@ return {
 			local diagnostics = null_ls.builtins.diagnostics
 
 			opts.sources = {
-				formatting.prettierd.with({ extra_filetypes = { "astro" } }),
+				formatting.prettierd,
 				formatting.black.with({ extra_args = { "--line-length=120" } }),
 				formatting.stylua,
 				formatting.goimports,

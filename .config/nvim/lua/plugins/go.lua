@@ -1,6 +1,7 @@
 local M = {
 	"ray-x/go.nvim",
 	lazy = true,
+	enabled = true,
 	ft = { "go", "gomod" },
 	dependencies = { -- optional packages
 		"ray-x/guihua.lua",
@@ -13,9 +14,6 @@ local M = {
 			virtual_text = false,
 		},
 	},
-	config = function(_, opts)
-		require("go").setup(opts)
-	end,
 }
 
 return M

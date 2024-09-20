@@ -11,6 +11,8 @@ vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "Cmdline
 	end,
 })
 
+vim.filetype.add({ extension = { templ = "templ" } })
+
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEnter", "WinLeave" }, {
 	pattern = "*",
 	group = augroup,
@@ -21,4 +23,3 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEn
 		end
 	end,
 })
-

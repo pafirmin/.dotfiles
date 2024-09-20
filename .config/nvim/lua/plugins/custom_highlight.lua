@@ -7,7 +7,6 @@ local M = {
 	event = "VeryLazy",
 	"kasama/nvim-custom-diagnostic-highlight",
 	opts = {
-
 		register_handler = true, -- Wether to register the handler automatically
 		handler_name = "kasama/nvim-custom-diagnostic-highlight", -- The name of the handler to be registered (has no effect if register_handler = false)
 		highlight_group = "Conceal", -- The Highlight group to set at the diagnostic

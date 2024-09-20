@@ -5,6 +5,7 @@
 local M = {
 	"nvim-tree/nvim-tree.lua",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
+	enabled = false,
 	opts = function()
 		local function on_attach(bufnr)
 			local ok, api = pcall(require, "nvim-tree.api")
