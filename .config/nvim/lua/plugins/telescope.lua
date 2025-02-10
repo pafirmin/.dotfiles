@@ -32,6 +32,11 @@ local M = {
 				find_cmd = "rg", -- find command (defaults to `fd`)
 			},
 		},
+    pickers = {
+      find_files = {
+        find_command = {'rg', '--files', '--hidden', '-g', '!.git'}
+      },
+    },
 	},
 	config = function(_, opts)
 		local telescope = require("telescope")

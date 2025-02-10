@@ -1,5 +1,5 @@
 local function opts(desc)
-	return { desc = desc, noremap = true, silent = true }
+  return { desc = desc, noremap = true, silent = true }
 end
 
 local keymap = vim.keymap.set
@@ -12,10 +12,10 @@ keymap("", "Y", "y$", opts("Yank to end of line"))
 -- keymap("n", "<C-l>", "<C-w>l", opts("Down on window"))
 --
 keymap(
-	"n",
-	"<leader>gg",
-	"<cmd>!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit <CR><CR>",
-	opts("opens lazygit")
+  "n",
+  "<leader>gg",
+  "<cmd>!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit <CR><CR>",
+  opts("opens lazygit")
 )
 
 keymap("n", "<leader>u", vim.cmd.UndotreeToggle, opts("Toggle UndoTree"))
@@ -29,15 +29,15 @@ keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts("Decrease horizontal win
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts("Increase horizontal window size"))
 
 keymap(
-	"n",
-	"gx",
-	[[:silent execute '!firefox ' . shellescape(expand('<cfile>'), 1)<CR>]],
-	opts("Open link under cursor in broser")
+  "n",
+  "gx",
+  [[:silent execute '!open ' . shellescape(expand('<cfile>'), 1)<CR>]],
+  opts("Open link under cursor in broser")
 )
 
 -- Nvim-Tree
 -- keymap("n", "<leader>\\", ":Oil --float<CR>", opts("Open Nvim Tree"))
--- keymap("n", "|", ":Oil --float<CR>", opts("Open Nvim Tree"))
+keymap("n", "|", ":NvimTreeToggle<CR>", opts("Open Nvim Tree"))
 
 -- navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts("Next buffer"))
@@ -58,6 +58,9 @@ keymap("v", "<A-UP>", ":m '<-2<CR>gv-gv", opts("Shift line up"))
 -- Keep cursor centered when moving up/down half a page
 keymap("n", "<C-d>", "<C-d>zz", opts(""))
 keymap("n", "<C-u>", "<C-u>zz", opts(""))
+
+-- Jump to definition in new split
+keymap("n", "gv", ":vsplit<CR><C-]>", opts("Open definition in new split"))
 
 -- quick replace
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
@@ -81,5 +84,3 @@ vim.api.nvim_create_user_command("W", "w", { nargs = 0 })
 vim.api.nvim_create_user_command("Wa", "wa", { nargs = 0 })
 vim.api.nvim_create_user_command("Q", "q", { nargs = 0 })
 vim.api.nvim_create_user_command("Qa", "qa", { nargs = 0 })
-
-vim.keymap.set({ "n", "x", "o" }, "X", "<Plug>(leap-backward-to)")

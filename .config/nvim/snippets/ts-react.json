@@ -5,7 +5,19 @@
   },
   "Functional component": {
     "prefix": "rfc",
-    "body": "const ${TM_FILENAME_BASE} = () => {\n\treturn (\n\t\t<div>\n\t\t\t$1\n\t\t</div>\n\t)\n}\n\nexport default ${TM_FILENAME_BASE}"
+    "body": "function ${TM_FILENAME_BASE} {\n\treturn (\n\t\t<div>\n\t\t\t$1\n\t\t</div>\n\t)\n}\n\nexport default ${TM_FILENAME_BASE}"
+  },
+  "Functional component exported": {
+    "prefix": "rfce",
+    "body": "export function $1() {\n\treturn (\n\t\t<div>\n\t\t\t$2\n\t\t</div>\n\t)\n}"
+  },
+  "Functional component with props exported": {
+    "prefix": "rfcpe",
+    "body": "interface Props {\n\t$3\n}\n\nexport function $1 ({ $2 }: Props) {\n\treturn (\n\t\t<div>\n\t\t\t$\n\t\t</div>\n\t)\n}"
+  },
+  "Functional composable component exported": {
+    "prefix": "rfcce",
+    "body": "export function $1({\n\tchildren,\n\tclassName,\n\t...props\n}: HTMLAttributes<HTML$2DivElement>) {\n\treturn (\n\t\t<div className={cn('', className)} {...props}>\n\t\t\t{children}\n\t\t</div>\n\t);\n}"
   },
   "useState": {
     "prefix": "us",
@@ -14,7 +26,11 @@
   },
   "useEffect": {
     "prefix": "ue",
-    "body": ["useEffect(() => {", "\t$1", "}, [${3:dependencies}])$0"],
+    "body": [
+      "useEffect(() => {",
+      "\t$1",
+      "}, [${3:dependencies}])$0"
+    ],
     "description": "React useEffect() hook"
   },
   "useEffect with cleanup": {
