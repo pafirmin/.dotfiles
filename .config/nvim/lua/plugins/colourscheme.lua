@@ -68,6 +68,7 @@ return {
         hl.typescriptTSInclude = { link = "Red" }
         hl.TSURI = { fg = palette.green, bg = palette.none, underline = true }
         hl.DiagnosticUnderlineError = { undercurl = true, sp = palette.red }
+        hl.TSTitle = { bold = true }
       end
     },
     config = function(_, opts)
@@ -116,4 +117,8 @@ return {
       require("gruvbox").setup(opts)
     end,
   },
+  {
+    'Mofiqul/vscode.nvim',
+    lazy = true,
+  }
 }

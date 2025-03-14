@@ -79,7 +79,6 @@ local M = {
         ["<C-j>"] = cmp.mapping.select_next_item(),
         ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
         ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-        ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
         ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
         ["<C-e>"] = cmp.mapping({
           i = cmp.mapping.abort(),
@@ -127,22 +126,7 @@ local M = {
         end,
       },
       sources = {
-        {
-          name = "nvim_lsp",
-          entry_filter = function(entry, _)
-            -- only suggest emmet expansion when it looks like an emmet expression
-            local kinds = require("cmp.types").lsp.CompletionItemKind
-            if kinds[entry:get_kind()] == "Snippet" then
-              local name = vim.split(entry.source:get_debug_name(), ":")[2]
-              if name == "emmet_ls" then
-                local word = entry:get_filter_text()
-                return string.match(word, "^%w+[*+>]")
-              end
-            end
-
-            return true
-          end,
-        },
+        { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "buffer" },
         { name = "path" },

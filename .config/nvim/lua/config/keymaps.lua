@@ -6,11 +6,12 @@ local keymap = vim.keymap.set
 
 keymap("", "Y", "y$", opts("Yank to end of line"))
 
+-- HANDLED BY tmux-nvim
 -- keymap("n", "<C-h>", "<C-w>h", opts("Left one window"))
 -- keymap("n", "<C-j>", "<C-w>j", opts("Right one window"))
 -- keymap("n", "<C-k>", "<C-w>k", opts("Up one window"))
 -- keymap("n", "<C-l>", "<C-w>l", opts("Down on window"))
---
+
 keymap(
   "n",
   "<leader>gg",
@@ -78,9 +79,24 @@ keymap("v", ">", ">gv", opts(""))
 -- maintain yanked text on visual mode put
 keymap("v", "p", '"_dP', opts(""))
 
+keymap("n", "<leader>zz", ":ZenMode<CR>", opts("toggle zen mode"))
+
 vim.api.nvim_create_user_command("Wq", "wq", { nargs = 0 })
 vim.api.nvim_create_user_command("Wqa", "wqa", { nargs = 0 })
 vim.api.nvim_create_user_command("W", "w", { nargs = 0 })
 vim.api.nvim_create_user_command("Wa", "wa", { nargs = 0 })
 vim.api.nvim_create_user_command("Q", "q", { nargs = 0 })
 vim.api.nvim_create_user_command("Qa", "qa", { nargs = 0 })
+
+local function toggle_quickfix()
+  local windows = vim.fn.getwininfo()
+  for _, win in pairs(windows) do
+    if win["quickfix"] == 1 then
+      vim.cmd.cclose()
+      return
+    end
+  end
+  vim.cmd([[botright copen]])
+end
+
+keymap("n", "<leader>qf", toggle_quickfix, opts("toggle quickfix window"))
