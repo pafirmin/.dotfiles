@@ -1,0 +1,15 @@
+[font.normal]
+family = "Monaspace Argon"
+style = "Regular"
+
+[font.bold]
+family = "Monaspace Argon"
+style = "Bold"
+
+[font.italic]
+family = "Monaspace Argon"
+style = "Italic"
+
+[font.bold_italic]
+family = "Monaspace Argon"
+style = "Bold Italic"
