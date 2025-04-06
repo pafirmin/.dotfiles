@@ -25,5 +25,3 @@ require("lazy").setup("plugins", {
   checker = { enabled = false },
   debug = false,
 })
-
-vim.cmd("colorscheme everforest")

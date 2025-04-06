@@ -2,37 +2,14 @@ return {
   { "tpope/vim-fugitive" },                 -- use git from inside nvim
   { "tpope/vim-repeat" },                   -- repeat plugin-specific commands with '.'
   { "tpope/vim-surround" },                 -- keymaps for surrounding text
-  { "tpope/vim-speeddating" },              -- easily change dates
   { "tpope/vim-abolish" },                  -- powerful substitution tools
   { "tpope/vim-unimpaired" },               -- useful keymappings (https://github.com/tpope/vim-unimpaired/blob/master/doc/unimpaired.txt)
   { "mbbill/undotree" },                    -- <leader>u to view undo tree
   { "nvim-lua/plenary.nvim", lazy = true }, -- window utils, used by other plugins
   {
-    "folke/zen-mode.nvim",
-    lazy = true,
-    cmd = 'ZenMode',
+    "alexghergh/nvim-tmux-navigation",      -- navigate between tmux panes and vim windows
     opts = {
-      plugins = {
-        tmux = { enabled = true },
-        alacritty = { enabled = true },
-      }
-    },
-  },
-  {
-    "smjonas/live-command.nvim",
-    config = function()
-      require("live-command").setup()
-    end
-  },
-  {
-    "folke/neodev.nvim",
-    lazy = true,
-    ft = 'lua',
-  },                                   -- nvim config lsp completion
-  {
-    "alexghergh/nvim-tmux-navigation", -- navigate between tmux panes and vim windows
-    opts = {
-      disable_when_zoomed = true,      -- defaults to false
+      disable_when_zoomed = true,           -- defaults to false
       keybindings = {
         left = "<C-h>",
         down = "<C-j>",

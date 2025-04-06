@@ -1,8 +1,4 @@
-local M = {}
-
-M.capabilities = require('blink.cmp').get_lsp_capabilities()
-
-M.setup = function()
+local function configure_diagnostics()
   local config = {
     virtual_lines = { current_line = true },
     signs = {
@@ -56,22 +52,25 @@ local function lsp_keymaps(bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 end
 
-vim.api.nvim_create_user_command("Format", function(args)
-  local range = nil
-  if args.count ~= -1 then
-    local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
-    range = {
-      start = { args.line1, 0 },
-      ["end"] = { args.line2, end_line:len() },
-    }
-  end
-  require("conform").format({ async = true, lsp_format = "first", range = range })
-end, { range = true })
-
-M.on_attach = function(client, bufnr)
-  -- These things break syntax highlighting?
-  client.server_capabilities.semanticTokensProvider = nil
-  lsp_keymaps(bufnr)
+local function create_user_commands()
+  vim.api.nvim_create_user_command("LspInfo", "checkhealth vim.lsp", { nargs = 0 })
 end
 
-return M
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('global.lsp', { clear = true }),
+  callback = function(args)
+    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+    client.server_capabilities.semanticTokensProvider = nil
+
+    lsp_keymaps(args.buf)
+    configure_diagnostics()
+    create_user_commands()
+  end
+})
+
+local lsp_config_path = vim.fn.stdpath("config") .. "/lsp"
+
+for _, file in ipairs(vim.fn.readdir(lsp_config_path)) do
+  local lsp_name = file:gsub("%.lua$", "")
+  vim.lsp.enable(lsp_name)
+end

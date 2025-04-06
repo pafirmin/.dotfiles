@@ -31,7 +31,6 @@ keymap(
 )
 
 -- Nvim-Tree
--- keymap("n", "<leader>\\", ":Oil --float<CR>", opts("Open Nvim Tree"))
 keymap("n", "|", ":NvimTreeToggle<CR>", opts("Open Nvim Tree"))
 
 -- navigate buffers
@@ -58,12 +57,12 @@ keymap("n", "<C-u>", "<C-u>zz", opts(""))
 keymap("n", "gv", ":vsplit<CR><C-]>", opts("Open definition in new split"))
 
 -- quick replace
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- copy/paste from system clipboard
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
-vim.keymap.set("x", "<leader>p", [["_dP]])
+keymap({ "n", "v" }, "<leader>y", [["+y]])
+keymap("n", "<leader>Y", [["+Y]])
+keymap("x", "<leader>p", [["_dP]])
 
 -- visual
 -- Stay in indent mode
@@ -72,8 +71,6 @@ keymap("v", ">", ">gv", opts(""))
 
 -- maintain yanked text on visual mode put
 keymap("v", "p", '"_dP', opts(""))
-
-keymap("n", "<leader>zz", ":ZenMode<CR>", opts("toggle zen mode"))
 
 vim.api.nvim_create_user_command("Wq", "wq", { nargs = 0 })
 vim.api.nvim_create_user_command("Wqa", "wqa", { nargs = 0 })
