@@ -4,6 +4,7 @@
 
 local M = {
   "nvim-telescope/telescope.nvim",
+  dependencies = { "nvim-telescope/telescope-ui-select.nvim" },
   lazy = true,
   cmd = "Telescope",
   keys = {
@@ -25,6 +26,11 @@ local M = {
       path_display = { "smart" },
     },
     extensions = {
+      ["ui-select"] = {
+        require("telescope.themes").get_dropdown {
+          -- even more opts
+        }
+      },
       media_files = {
         -- filetypes whitelist
         -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
@@ -108,6 +114,7 @@ local M = {
     }
 
     telescope.setup(opts)
+    telescope.load_extension("ui-select")
   end,
 }
 

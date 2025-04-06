@@ -6,12 +6,6 @@ local keymap = vim.keymap.set
 
 keymap("", "Y", "y$", opts("Yank to end of line"))
 
--- HANDLED BY tmux-nvim
--- keymap("n", "<C-h>", "<C-w>h", opts("Left one window"))
--- keymap("n", "<C-j>", "<C-w>j", opts("Right one window"))
--- keymap("n", "<C-k>", "<C-w>k", opts("Up one window"))
--- keymap("n", "<C-l>", "<C-w>l", opts("Down on window"))
-
 keymap(
   "n",
   "<leader>gg",

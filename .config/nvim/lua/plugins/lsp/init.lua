@@ -14,9 +14,9 @@ return {
     lazy = true,
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
       "williamboman/mason-lspconfig.nvim",
       "williamboman/mason.nvim",
+      "saghen/blink.cmp",
     },
     config = function(_, _)
       local lspconfig = require("lspconfig")
@@ -29,18 +29,19 @@ return {
         automatic_installation = true,
       })
 
-      local opts = {
-        on_attach = handlers.on_attach,
-        capabilities = handlers.capabilities,
-      }
-
       mason_lspconfig.setup_handlers({
         -- default handler
         function(server_name)
+          local opts = {
+            capabilities = handlers.capabilities,
+            on_attach    = handlers.on_attach,
+          }
+
           local ok, conf_opts = pcall(require, "plugins.lsp.settings." .. server_name)
           if ok then
             opts = vim.tbl_deep_extend("force", conf_opts, opts)
           end
+
           lspconfig[server_name].setup(opts)
         end,
         --noop: handled by typescript-tools.nvim
@@ -53,19 +54,33 @@ return {
     lazy = true,
     ft = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    opts = {
-      on_attach = require("plugins.lsp.handlers").on_attach,
-      capabilities = require("plugins.lsp.handlers").capabilities,
-      settings = {
-        expose_as_code_action = "all",
-        tsserver_plugins = {
-          "@styled/typescript-styled-plugin",
+    config = function()
+      local opts = {
+        on_attach = require("plugins.lsp.handlers").on_attach,
+        capabilities = require("plugins.lsp.handlers").capabilities,
+        settings = {
+          tsserver_file_preferences = {
+            importModuleSpecifierPreference = 'non-relative',
+          },
         },
-        tsserver_file_preferences = {
-          importModuleSpecifierPreference = 'non-relative',
-        }
-      },
-    },
+      }
+
+      vim.api.nvim_buf_set_keymap(0,
+        'n',
+        '<leader>ia',
+        "<cmd>TSToolsAddMissingImports<CR>",
+        { noremap = true }
+      )
+
+      vim.api.nvim_buf_set_keymap(0,
+        'n',
+        '<leader>io',
+        "<cmd>TSToolsOrganizeImports<CR>",
+        { noremap = true }
+      )
+
+      require("typescript-tools").setup(opts);
+    end
   },
   {
     "williamboman/mason.nvim",
@@ -84,31 +99,4 @@ return {
       max_concurrent_installers = 4,
     },
   },
-  -- {
-  -- 	"nvimtools/none-ls.nvim",
-  --    dependencies = { "nvimtools/none-ls-extras.nvim"},
-  -- 	lazy = true,
-  -- 	event = { "BufReadPre", "BufNewFile" },
-  -- 	opts = {
-  -- 		debug = false,
-  -- 	},
-  -- 	config = function(_, opts)
-  -- 		local null_ls = require("null-ls")
-  -- 		-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
-  -- 		local formatting = null_ls.builtins.formatting
-  -- 		local diagnostics = null_ls.builtins.diagnostics
-  --
-  -- 		opts.sources = {
-  -- 			formatting.prettierd,
-  -- 			formatting.black.with({ extra_args = { "--line-length=120" } }),
-  -- 			formatting.stylua,
-  -- 			formatting.goimports,
-  -- 			formatting.yamlfmt,
-  -- 			diagnostics.cfn_lint,
-  --        require("none-ls.diagnostics.eslint_d"),
-  -- 		}
-  --
-  -- 		null_ls.setup(opts)
-  -- 	end,
-  -- },
 }
