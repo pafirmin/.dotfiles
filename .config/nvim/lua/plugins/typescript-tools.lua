@@ -1,3 +1,7 @@
+-----------------------------------[
+-- Enhanced Typescipt support
+-----------------------------------]
+
 return {
   {
     "pmizio/typescript-tools.nvim",

@@ -1,5 +1,9 @@
+-----------------[
+-- formatting
+-----------------]
+
 return {
-  'stevearc/conform.nvim', -- formatters
+  'stevearc/conform.nvim',
   opts = {
     lazy = true,
     ft = { "typescript", "typescriptreact", "javascriptreact" },

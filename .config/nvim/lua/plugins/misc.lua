@@ -6,10 +6,16 @@ return {
   { "tpope/vim-unimpaired" },               -- useful keymappings (https://github.com/tpope/vim-unimpaired/blob/master/doc/unimpaired.txt)
   { "mbbill/undotree" },                    -- <leader>u to view undo tree
   { "nvim-lua/plenary.nvim", lazy = true }, -- window utils, used by other plugins
+
+
+  -----------------------------------------[
+  -- Seemlessly navigate between vim windows
+  -- and tmux panes
+  -----------------------------------------]
   {
-    "alexghergh/nvim-tmux-navigation",      -- navigate between tmux panes and vim windows
+    "alexghergh/nvim-tmux-navigation",
     opts = {
-      disable_when_zoomed = true,           -- defaults to false
+      disable_when_zoomed = true, -- defaults to false
       keybindings = {
         left = "<C-h>",
         down = "<C-j>",
@@ -20,16 +26,24 @@ return {
       },
     },
   },
+
+  -----------------------------------------[
+  -- Snippet engine
+  -----------------------------------------]
   {
-    "L3MON4D3/LuaSnip", -- snippet engine
+    "L3MON4D3/LuaSnip",
     lazy = true,
     version = "v2.*",
     config = function()
       require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets/" } })
     end,
   },
+
+  -----------------------------------------[
+  -- Mark indent levels with vertical lines
+  -----------------------------------------]
   {
-    "lukas-reineke/indent-blankline.nvim", -- show vertical lines at indents
+    "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     opts = {
       scope = {
@@ -41,15 +55,23 @@ return {
       }
     },
   },
+
+  ------------------------------------------[
+  -- Automatically close and match html tags
+  ------------------------------------------]
   {
-    "windwp/nvim-ts-autotag", -- auto-close html/jsx tags
+    "windwp/nvim-ts-autotag",
     lazy = true,
     dependencies = "nvim-treesitter/nvim-treesitter",
-    ft = { "html", "typescriptreact" },
+    ft = { "html", "typescriptreact", "javascriptreact" },
     config = true,
   },
+
+  -----------------------------------[
+  -- Easily jump around files
+  -----------------------------------]
   {
-    "ggandor/leap.nvim", -- easily jump around files
+    "ggandor/leap.nvim",
     lazy = true,
     event = { "BufReadPre", "BufNewFile" },
     config = function()
@@ -58,6 +80,10 @@ return {
       vim.keymap.set({ 'n', 'x', 'o' }, 'gs', '<Plug>(leap-from-window)')
     end,
   },
+
+  -----------------------------------[
+  -- Preview markdown files in browser
+  -----------------------------------]
   {
     "iamcco/markdown-preview.nvim",
     lazy = true,

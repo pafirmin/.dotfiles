@@ -1,3 +1,7 @@
+----------------------------[
+-- Alternative file explorer
+----------------------------]
+
 return {
   "stevearc/oil.nvim",
   enabled = false,

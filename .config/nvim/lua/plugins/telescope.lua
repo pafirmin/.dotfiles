@@ -1,6 +1,6 @@
--------------------[
--- search for files
--------------------]
+-----------------------------[
+-- File fuzzy finder and more
+-----------------------------]
 
 local M = {
   "nvim-telescope/telescope.nvim",

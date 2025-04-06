@@ -1,5 +1,5 @@
 -----------------[
--- autocompletion
+-- Autocompletion
 -----------------]
 
 local M = {

@@ -1,5 +1,5 @@
 ----------------[
--- file explorer
+-- File explorer
 ----------------]
 
 local M = {

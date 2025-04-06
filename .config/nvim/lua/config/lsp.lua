@@ -8,6 +8,11 @@ local function configure_diagnostics()
         [vim.diagnostic.severity.INFO] = '',
         [vim.diagnostic.severity.HINT] = '',
       },
+      numhl = {
+        [vim.diagnostic.severity.INFO] = 'InfoMessage',
+        [vim.diagnostic.severity.WARN] = 'WarningMsg',
+        [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+      }
     },
     update_in_insert = false,
     underline = true,

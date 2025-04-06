@@ -1,6 +1,6 @@
---------------------------[
--- autoclose brackets, etc
---------------------------]
+----------------------------------[
+-- autoclose brackets, braces etc
+----------------------------------]
 
 local M = {
   "windwp/nvim-autopairs",
