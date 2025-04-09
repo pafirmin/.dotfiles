@@ -6,12 +6,12 @@ local keymap = vim.keymap.set
 
 keymap("", "Y", "y$", opts("Yank to end of line"))
 
-keymap(
-	"n",
-	"<leader>gg",
-	"<cmd>!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit <CR><CR>",
-	opts("opens lazygit")
-)
+-- keymap(
+-- 	"n",
+-- 	"<leader>gg",
+-- 	"<cmd>!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit <CR><CR>",
+-- 	opts("opens lazygit")
+-- )
 
 keymap("n", "<leader>u", vim.cmd.UndotreeToggle, opts("Toggle UndoTree"))
 
@@ -24,7 +24,7 @@ keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts("Decrease horizontal win
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts("Increase horizontal window size"))
 
 -- Nvim-Tree
-keymap("n", "|", ":NvimTreeToggle<CR>", opts("Open Nvim Tree"))
+-- keymap("n", "|", ":NvimTreeToggle<CR>", opts("Open Nvim Tree"))
 
 -- navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts("Next buffer"))
