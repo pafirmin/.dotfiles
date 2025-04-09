@@ -54,8 +54,9 @@ local tags = {
   "!Join sequence",
 }
 
-local opts = {
-  cmd = { "yaml-language-server" },
+--- @class vim.lsp.ClientConfig
+local config = {
+  cmd = { "yaml-language-server", "--stdio" },
   filetypes = { "yaml" },
   settings = {
     yaml = {
@@ -66,4 +67,4 @@ local opts = {
   },
 }
 
-return opts
+return config

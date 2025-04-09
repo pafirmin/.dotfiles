@@ -1,5 +1,5 @@
 local function opts(desc)
-  return { desc = desc, noremap = true, silent = true }
+	return { desc = desc, noremap = true, silent = true }
 end
 
 local keymap = vim.keymap.set
@@ -7,10 +7,10 @@ local keymap = vim.keymap.set
 keymap("", "Y", "y$", opts("Yank to end of line"))
 
 keymap(
-  "n",
-  "<leader>gg",
-  "<cmd>!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit <CR><CR>",
-  opts("opens lazygit")
+	"n",
+	"<leader>gg",
+	"<cmd>!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit <CR><CR>",
+	opts("opens lazygit")
 )
 
 keymap("n", "<leader>u", vim.cmd.UndotreeToggle, opts("Toggle UndoTree"))
@@ -23,13 +23,6 @@ keymap("n", "<C-Down>", ":resize -2<CR>", opts("Descrease vertical window size")
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts("Decrease horizontal window size"))
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts("Increase horizontal window size"))
 
-keymap(
-  "n",
-  "gx",
-  [[:silent execute '!open ' . shellescape(expand('<cfile>'), 1)<CR>]],
-  opts("Open link under cursor in broser")
-)
-
 -- Nvim-Tree
 keymap("n", "|", ":NvimTreeToggle<CR>", opts("Open Nvim Tree"))
 
@@ -38,6 +31,11 @@ keymap("n", "<S-l>", ":bnext<CR>", opts("Next buffer"))
 keymap("n", "<S-h>", ":bprevious<CR>", opts("Prev buffer"))
 keymap("n", "<leader>bd", ":bdelete<CR>", opts("Close buffer"))
 keymap("n", "<leader>bb", ":BufferLinePick<CR>", opts("Pick buffer"))
+
+-- inlay hints
+keymap("n", "<leader>in", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ 0 }), { 0 })
+end, opts("Toggle inlay hints"))
 
 -- go to start/end of line with bs/space
 keymap({ "n", "v" }, "<Space>", "$", opts("End of line"))
@@ -80,14 +78,14 @@ vim.api.nvim_create_user_command("Q", "q", { nargs = 0 })
 vim.api.nvim_create_user_command("Qa", "qa", { nargs = 0 })
 
 local function toggle_quickfix()
-  local windows = vim.fn.getwininfo()
-  for _, win in pairs(windows) do
-    if win["quickfix"] == 1 then
-      vim.cmd.cclose()
-      return
-    end
-  end
-  vim.cmd([[botright copen]])
+	local windows = vim.fn.getwininfo()
+	for _, win in pairs(windows) do
+		if win["quickfix"] == 1 then
+			vim.cmd.cclose()
+			return
+		end
+	end
+	vim.cmd([[botright copen]])
 end
 
 keymap("n", "<leader>qf", toggle_quickfix, opts("toggle quickfix window"))

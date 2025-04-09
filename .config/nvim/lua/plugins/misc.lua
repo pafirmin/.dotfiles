@@ -28,6 +28,15 @@ return {
   },
 
   -----------------------------------------[
+  -- Context (JSX)-aware comments
+  -----------------------------------------]
+  {
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile" },
+    "JoosepAlviste/nvim-ts-context-commentstring",
+  },
+
+  -----------------------------------------[
   -- Snippet engine
   -----------------------------------------]
   {

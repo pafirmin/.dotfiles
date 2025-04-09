@@ -18,3 +18,4 @@ return {
     max_concurrent_installers = 4,
   },
 }
+

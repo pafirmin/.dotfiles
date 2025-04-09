@@ -6,7 +6,8 @@ local function get_workspace_folder()
   }
 end
 
-return {
+--- @class vim.lsp.ClientConfig
+local config = {
   cmd = { "vscode-eslint-language-server", "--stdio" },
   filetypes = { "javascript", "typescript", "typescriptreact", "javascriptreact" },
   root_markers = { ".eslintrc.json", "package.json", "tsconfig.json", ".git" },
@@ -42,3 +43,5 @@ return {
     workspaceFolder = get_workspace_folder(),
   }
 }
+
+return config

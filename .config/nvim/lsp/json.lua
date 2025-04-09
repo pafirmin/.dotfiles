@@ -174,8 +174,9 @@ local schemas = {
 
 -- local extended_schemas = extend(schemas, default_schemas)
 
-local opts = {
-  cmd = { "json-lsp" },
+--- @class vim.lsp.ClientConfig
+local config = {
+  cmd = { "vscode-json-language-server", "--stdio" },
   filetypes = { "json" },
   settings = {
     json = {
@@ -193,4 +194,4 @@ local opts = {
   },
 }
 
-return opts
+return config

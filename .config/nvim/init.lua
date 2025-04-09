@@ -4,4 +4,4 @@ require("config.autocommmands")
 require("config.lazy")
 require("config.lsp")
 
-vim.cmd("colorscheme everforest")
+vim.cmd.colorscheme("gruvbox-material")

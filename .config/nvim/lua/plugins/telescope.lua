@@ -25,19 +25,6 @@ local M = {
       selection_caret = " ",
       path_display = { "smart" },
     },
-    extensions = {
-      ["ui-select"] = {
-        require("telescope.themes").get_dropdown {
-          -- even more opts
-        }
-      },
-      media_files = {
-        -- filetypes whitelist
-        -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-        filetypes = { "png", "webp", "jpg", "jpeg", "svg" },
-        find_cmd = "rg", -- find command (defaults to `fd`)
-      },
-    },
     pickers = {
       find_files = {
         find_command = { 'rg', '--files', '--hidden', '-g', '!.git' }
@@ -110,6 +97,18 @@ local M = {
         ["<PageDown>"] = actions.results_scrolling_down,
 
         ["?"] = actions.which_key,
+      },
+    }
+
+    opts.extensions = {
+      ["ui-select"] = {
+        require("telescope.themes").get_dropdown {}
+      },
+      media_files = {
+        -- filetypes whitelist
+        -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+        filetypes = { "png", "webp", "jpg", "jpeg", "svg" },
+        find_cmd = "rg", -- find command (defaults to `fd`)
       },
     }
 

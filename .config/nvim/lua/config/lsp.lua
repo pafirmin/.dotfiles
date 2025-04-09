@@ -1,81 +1,124 @@
-local function configure_diagnostics()
-  local config = {
-    virtual_lines = { current_line = true },
-    signs = {
-      text = {
-        [vim.diagnostic.severity.ERROR] = '',
-        [vim.diagnostic.severity.WARN] = '',
-        [vim.diagnostic.severity.INFO] = '',
-        [vim.diagnostic.severity.HINT] = '',
-      },
-      numhl = {
-        [vim.diagnostic.severity.INFO] = 'InfoMessage',
-        [vim.diagnostic.severity.WARN] = 'WarningMsg',
-        [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
-      }
-    },
-    update_in_insert = false,
-    underline = true,
-    severity_sort = true,
-    float = {
-      focusable = false,
-      style = "minimal",
-      border = "rounded",
-      source = "always",
-      header = "",
-      prefix = "",
-    },
-  }
+local utils = require("utils")
 
-  vim.diagnostic.config(config)
+local function configure_diagnostics()
+	local config = {
+		virtual_lines = { current_line = true },
+		signs = {
+			text = {
+				[vim.diagnostic.severity.ERROR] = "",
+				[vim.diagnostic.severity.WARN] = "",
+				[vim.diagnostic.severity.INFO] = "",
+				[vim.diagnostic.severity.HINT] = "",
+			},
+			numhl = {
+				[vim.diagnostic.severity.INFO] = "InfoMessage",
+				[vim.diagnostic.severity.WARN] = "WarningMsg",
+				[vim.diagnostic.severity.ERROR] = "ErrorMsg",
+			},
+		},
+		update_in_insert = false,
+		underline = true,
+		severity_sort = true,
+		float = {
+			border = "rounded",
+			source = true,
+		},
+	}
+
+	vim.diagnostic.config(config)
 end
 
 local function lsp_keymaps(bufnr)
-  local opts = { noremap = true, silent = true }
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "v", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover({ border='rounded' })<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader><leader>", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(
-    bufnr,
-    "n",
-    "<leader>p",
-    '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>',
-    opts
-  )
-  vim.api.nvim_buf_set_keymap(
-    bufnr,
-    "n",
-    "<leader>n",
-    '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>',
-    opts
-  )
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+	utils.set_keymap({
+		desc = "show documentation for symbol under cursor",
+		key = "K",
+		cmd = function()
+			vim.lsp.buf.hover({ border = "rounded" })
+		end,
+		bufnr = bufnr,
+	})
+
+	utils.set_keymap({
+		desc = "go to definition of symbol under cursor",
+		key = "gd",
+		cmd = vim.lsp.buf.definition,
+		bufnr = bufnr,
+	})
+
+	utils.set_keymap({
+		desc = "go to type definition of symbol under cursor",
+		key = "gD",
+		cmd = vim.lsp.buf.type_definition,
+		bufnr = bufnr,
+	})
+
+	utils.set_keymap({
+		desc = "list references to symbol under cursor in quickfix list",
+		key = "gr",
+		cmd = vim.lsp.buf.references,
+		bufnr = bufnr,
+	})
+
+	utils.set_keymap({
+		desc = "rename symbol under cursor",
+		key = "<leader>rn",
+		cmd = vim.lsp.buf.rename,
+		bufnr = bufnr,
+	})
+
+	utils.set_keymap({
+		desc = "perform code action",
+		mode = { "n", "v" },
+		key = "<leader>ca",
+		cmd = vim.lsp.buf.code_action,
+		bufnr = bufnr,
+	})
+
+	utils.set_keymap({
+		desc = "open diagnostics for current line in floating window",
+		key = "<leader><leader>",
+		cmd = vim.diagnostic.open_float,
+		bufnr = bufnr,
+	})
+
+	utils.set_keymap({
+		desc = "go to next diagnostic",
+		key = "<leader>n",
+		cmd = function()
+			vim.diagnostic.jump({ count = 1, float = true })
+		end,
+		bufnr = bufnr,
+	})
+
+	utils.set_keymap({
+		desc = "go to prev diagnostic",
+		key = "<leader>p",
+		cmd = function()
+			vim.diagnostic.jump({ count = -1, float = true })
+		end,
+		bufnr = bufnr,
+	})
 end
 
 local function create_user_commands()
-  vim.api.nvim_create_user_command("LspInfo", "checkhealth vim.lsp", { nargs = 0 })
+	vim.api.nvim_create_user_command("LspInfo", "checkhealth vim.lsp", { nargs = 0 })
 end
 
-vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('global.lsp', { clear = true }),
-  callback = function(args)
-    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-    client.server_capabilities.semanticTokensProvider = nil
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("global.lsp", { clear = true }),
+	callback = function(args)
+		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+		client.server_capabilities.semanticTokensProvider = nil
 
-    lsp_keymaps(args.buf)
-    configure_diagnostics()
-    create_user_commands()
-  end
+		lsp_keymaps(args.buf)
+		configure_diagnostics()
+		create_user_commands()
+	end,
 })
 
 local lsp_config_path = vim.fn.stdpath("config") .. "/lsp"
 
 for _, file in ipairs(vim.fn.readdir(lsp_config_path)) do
-  local lsp_name = file:gsub("%.lua$", "")
-  vim.lsp.enable(lsp_name)
+	local lsp_name = file:gsub("%.lua$", "")
+	vim.lsp.enable(lsp_name)
 end
