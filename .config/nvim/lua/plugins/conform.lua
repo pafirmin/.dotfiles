@@ -4,9 +4,9 @@
 
 return {
 	"stevearc/conform.nvim",
+	lazy = true,
+	event = { "BufReadPre", "BufNewFile" },
 	opts = {
-		lazy = true,
-		event = { "BufReadPre", "BufNewFile" },
 		formatters_by_ft = {
 			javascript = { "prettierd", "prettier", stop_after_first = true, lsp_format = "first" },
 			javascriptreact = { "prettierd", "prettier", stop_after_first = true, lsp_format = "first" },

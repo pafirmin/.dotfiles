@@ -3,7 +3,7 @@ return {
 	{ "tpope/vim-surround" }, -- keymaps for surrounding text
 	{ "tpope/vim-abolish" }, -- powerful substitution tools
 	{ "tpope/vim-unimpaired" }, -- useful keymappings (https://github.com/tpope/vim-unimpaired/blob/master/doc/unimpaired.txt)
-	{ "mbbill/undotree" }, -- <leader>u to view undo tree
+	{ "mbbill/undotree", lazy = true }, -- <leader>u to view undo tree
 	{ "nvim-lua/plenary.nvim", lazy = true }, -- window utils, used by other plugins
 
 	-----------------------------------------[
@@ -52,6 +52,8 @@ return {
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
+		lazy = true,
+		event = { "BufReadPre", "BufNewFile" },
 		opts = {
 			scope = {
 				show_start = false,

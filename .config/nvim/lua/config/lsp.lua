@@ -1,8 +1,11 @@
 local utils = require("utils")
 
 local function configure_diagnostics()
+	--- @class vim.diagnostic.Opts
 	local config = {
-		virtual_lines = { current_line = true },
+		virtual_lines = {
+			current_line = true,
+		},
 		signs = {
 			text = {
 				[vim.diagnostic.severity.ERROR] = "",
@@ -17,7 +20,6 @@ local function configure_diagnostics()
 			},
 		},
 		update_in_insert = false,
-		underline = true,
 		severity_sort = true,
 		float = {
 			border = "rounded",
@@ -116,9 +118,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
+local server_names = {}
 local lsp_config_path = vim.fn.stdpath("config") .. "/lsp"
 
 for _, file in ipairs(vim.fn.readdir(lsp_config_path)) do
-	local lsp_name = file:gsub("%.lua$", "")
-	vim.lsp.enable(lsp_name)
+	local server_name = file:gsub("%.lua$", "")
+	table.insert(server_names, server_name)
 end
+
+vim.lsp.enable(server_names)
