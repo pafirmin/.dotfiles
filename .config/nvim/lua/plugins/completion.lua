@@ -4,6 +4,8 @@
 
 local M = {
   'saghen/blink.cmp',
+  lazy = true,
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = { "nvim-autopairs" },
   version = "v0.*",
   opts = {

@@ -26,12 +26,22 @@ return {
 	},
 
 	-----------------------------------------[
+	-- Session persistence/restore
+	-----------------------------------------]
+	{
+		"folke/persistence.nvim",
+		lazy = true,
+		event = { "BufReadPre", "BufNewFile" },
+		opts = {},
+	},
+
+	-----------------------------------------[
 	-- Context (JSX)-aware comments
 	-----------------------------------------]
 	{
+		"JoosepAlviste/nvim-ts-context-commentstring",
 		lazy = true,
 		event = { "BufReadPre", "BufNewFile" },
-		"JoosepAlviste/nvim-ts-context-commentstring",
 	},
 
 	-----------------------------------------[

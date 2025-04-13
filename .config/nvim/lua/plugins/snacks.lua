@@ -1,12 +1,15 @@
------------------------------[
--- Pickers and utils
------------------------------]
+-------------------------------[
+-- Pickers, dashboard and utils
+-------------------------------]
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
 	lazy = false,
 	opts = {
 		lazygit = {
+			enabled = true,
+		},
+		images = {
 			enabled = true,
 		},
 		picker = {
@@ -45,6 +48,7 @@ return {
 						desc = "Config",
 						action = ":lua Snacks.explorer({cwd = vim.fn.stdpath('config')})",
 					},
+					{ icon = " ", key = "s", desc = "Restore Session", section = "session" },
 					{
 						icon = "󰒲 ",
 						key = "L",

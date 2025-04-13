@@ -33,6 +33,7 @@ local options = {
 	sidescrolloff = 8,
 	grepprg = "rg --vimgrep", -- use ripgrep for :grep command
 	cursorline = true, -- highlight current line
+	guicursor = "a:blinkwait100-blinkoff600-blinkon600,i-ci:ver25",
 }
 
 -- I think this means you don't have to press 'enter' to dismiss messages
