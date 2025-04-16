@@ -36,7 +36,7 @@ return {
 	},
 
 	-----------------------------------------[
-	-- Context (JSX)-aware comments
+	-- Context (JSX) aware comments
 	-----------------------------------------]
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
@@ -108,8 +108,6 @@ return {
 		lazy = true,
 		ft = "markdown",
 		cmd = "MarkdownPreview",
-		build = function()
-			vim.fn["mkdp#util#install"]()
-		end,
+		build = ":call mkdp#util#install()",
 	},
 }
