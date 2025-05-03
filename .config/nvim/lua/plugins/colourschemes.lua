@@ -85,10 +85,9 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.g.gruvbox_material_enable_italic = false
+			vim.g.gruvbox_material_enable_italic = 1
 			vim.g.gruvbox_material_enable_bold = 1
-			-- vim.g.gruvbox_material_foreground = ",ater"
-			-- vim.g.gruvbox_material_background = "medium"
+			vim.g.gruvbox_material_dim_inactive_windows = 1
 		end,
 	},
 }
