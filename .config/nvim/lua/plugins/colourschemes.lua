@@ -87,8 +87,8 @@ return {
 		config = function()
 			vim.g.gruvbox_material_enable_italic = false
 			vim.g.gruvbox_material_enable_bold = 1
-			vim.g.gruvbox_material_foreground = "mix"
-			vim.g.gruvbox_material_background = "medium"
+			-- vim.g.gruvbox_material_foreground = ",ater"
+			-- vim.g.gruvbox_material_background = "medium"
 		end,
 	},
 }

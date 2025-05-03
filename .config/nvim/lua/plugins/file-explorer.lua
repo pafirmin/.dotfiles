@@ -1,30 +1,30 @@
 return {
-	"mikavilpas/yazi.nvim",
-	event = "VeryLazy",
-	dependencies = {
-		"folke/snacks.nvim",
-	},
-	keys = {
-		{
-			"|",
-			mode = { "n", "v" },
-			"<cmd>Yazi<cr>",
-			desc = "Toggle yazi",
-		},
-		{
-			"g|",
-			mode = { "n", "v" },
-			"<cmd>Yazi cwd<cr>",
-			desc = "Open yazi at the current working directory",
-		},
-	},
-	opts = {
-		open_for_directories = true,
-		keymaps = {
-			show_help = "<f1>",
-		},
-	},
-	init = function()
-		vim.g.loaded_netrwPlugin = 1
-	end,
+	-- "mikavilpas/yazi.nvim",
+	-- event = "VeryLazy",
+	-- dependencies = {
+	-- 	"folke/snacks.nvim",
+	-- },
+	-- keys = {
+	-- 	{
+	-- 		"|",
+	-- 		mode = { "n", "v" },
+	-- 		"<cmd>Yazi<cr>",
+	-- 		desc = "Toggle yazi",
+	-- 	},
+	-- 	{
+	-- 		"g|",
+	-- 		mode = { "n", "v" },
+	-- 		"<cmd>Yazi cwd<cr>",
+	-- 		desc = "Open yazi at the current working directory",
+	-- 	},
+	-- },
+	-- opts = {
+	-- 	open_for_directories = true,
+	-- 	keymaps = {
+	-- 		show_help = "<f1>",
+	-- 	},
+	-- },
+	-- init = function()
+	-- 	vim.g.loaded_netrwPlugin = 1
+	-- end,
 }

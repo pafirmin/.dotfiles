@@ -39,7 +39,7 @@ return {
 						desc = "Recent Files",
 						action = ":lua Snacks.dashboard.pick('oldfiles')",
 					},
-					{ icon = " ", key = "e", desc = "File explorer", action = "<cmd>Yazi cwd<cr>" },
+					{ icon = " ", key = "e", desc = "File explorer", action = ":lua Snacks.explorer()" },
 					{
 						icon = " ",
 						key = "c",
@@ -88,13 +88,13 @@ return {
 				require("snacks").picker.qflist()
 			end,
 		},
-		-- {
-		-- 	desc = "open file explorer",
-		-- 	"|",
-		-- 	function()
-		-- 		require("snacks").explorer()
-		-- 	end,
-		-- },
+		{
+			desc = "open file explorer",
+			"|",
+			function()
+				require("snacks").explorer()
+			end,
+		},
 		{
 			desc = "open buffer list",
 			"<leader>bb",
