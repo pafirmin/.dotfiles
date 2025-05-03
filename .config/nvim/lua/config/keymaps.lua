@@ -23,14 +23,15 @@ keymap("n", "<C-Down>", ":resize -2<CR>", opts("Descrease vertical window size")
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts("Decrease horizontal window size"))
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts("Increase horizontal window size"))
 
--- Nvim-Tree
--- keymap("n", "|", ":NvimTreeToggle<CR>", opts("Open Nvim Tree"))
-
 -- navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts("Next buffer"))
 keymap("n", "<S-h>", ":bprevious<CR>", opts("Prev buffer"))
 keymap("n", "<leader>bd", ":bdelete<CR>", opts("Close buffer"))
 keymap("n", "<leader>bb", ":BufferLinePick<CR>", opts("Pick buffer"))
+
+-- Navigate tabs
+keymap("n", "<A-l>", "gt", opts("Next tab"))
+keymap("n", "<A-h>", "gT", opts("Prev tab"))
 
 -- inlay hints
 keymap("n", "<leader>in", function()

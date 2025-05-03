@@ -15,9 +15,6 @@ return {
 		picker = {
 			ui_select = true,
 		},
-		explorer = {
-			replace_netrw = true,
-		},
 		dashboard = {
 			sections = {
 				{ section = "header" },
@@ -42,11 +39,12 @@ return {
 						desc = "Recent Files",
 						action = ":lua Snacks.dashboard.pick('oldfiles')",
 					},
+					{ icon = " ", key = "e", desc = "File explorer", action = "<cmd>Yazi cwd<cr>" },
 					{
 						icon = " ",
 						key = "c",
 						desc = "Config",
-						action = ":lua Snacks.explorer({cwd = vim.fn.stdpath('config')})",
+						action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
 					},
 					{ icon = " ", key = "s", desc = "Restore Session", section = "session" },
 					{
@@ -90,11 +88,25 @@ return {
 				require("snacks").picker.qflist()
 			end,
 		},
+		-- {
+		-- 	desc = "open file explorer",
+		-- 	"|",
+		-- 	function()
+		-- 		require("snacks").explorer()
+		-- 	end,
+		-- },
 		{
-			desc = "open file explorer",
-			"|",
+			desc = "open buffer list",
+			"<leader>bb",
 			function()
-				require("snacks").explorer()
+				require("snacks").picker.buffers()
+			end,
+		},
+		{
+			desc = "show git blame of line",
+			"<leader>gb",
+			function()
+				require("snacks").git.blame_line()
 			end,
 		},
 	},

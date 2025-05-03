@@ -62,7 +62,7 @@ end
 --- @class vim.lsp.ClientConfig
 local config = {
 	cmd = { "typescript-language-server", "--stdio" },
-	filetypes = { "javascript", "typescript", "typescriptreact", "javascriptreact" },
+	filetypes = { "javascript", "typescript", "typescriptreact", "javascriptreact", "vue" },
 	root_markers = { "tsconfig.json", "package.json", "jsconfig.json", ".git" },
 	on_attach = function(client, bufnr)
 		set_typescript_keymaps(client, bufnr)
@@ -81,6 +81,13 @@ local config = {
 			includeCompletionsForModuleExports = true,
 			includeCompletionsForImportStatements = true,
 			importModuleSpecifierPreference = "non-relative",
+		},
+		plugins = {
+			{
+				name = "@vue/typescript-plugin",
+				location = "/Users/paulfirmin/Library/pnpm/global/5/node_modules/@vue/typescript-plugin",
+				languages = { "javascript", "typescript", "vue" },
+			},
 		},
 	},
 }
