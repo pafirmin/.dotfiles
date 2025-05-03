@@ -18,7 +18,11 @@ local M = {
 			lualine_a = { "mode" },
 			lualine_b = { "branch", "diagnostics" },
 			lualine_c = {
-				{ "filename", path = 1 },
+				{
+					"filename",
+					path = 1,
+					shorting_target = 0,
+				},
 			},
 			lualine_x = { "filetype" },
 			lualine_y = { "progress" },
