@@ -9,12 +9,11 @@ local options = {
 	ignorecase = true, -- ignore case in search patterns
 	mouse = "a", -- allow the mouse to be used in neovim
 	pumheight = 10, -- pop up menu height
-	showmode = false, -- we don't need to see things like -- INSERT -- anymore
 	smartcase = true, -- smart case
 	smartindent = true, -- make indenting smarter again
 	splitbelow = true, -- force all horizontal splits to go below current window
 	splitright = true, -- force all vertical splits to go to the right of current window
-	colorcolumn = "80", -- show vertical bar at col 100
+	colorcolumn = "80", -- show vertical bar at col 80
 	swapfile = false, -- creates a swapfile
 	termguicolors = true, -- set term gui colors (most terminals support this)
 	timeoutlen = 1000, -- time to wait for a mapped sequence to complete (in milliseconds)
@@ -31,7 +30,6 @@ local options = {
 	wrap = false, -- display lines as one long line
 	scrolloff = 12, -- start scrolling when cursor is n lines before the bottom
 	sidescrolloff = 8,
-	grepprg = "rg --vimgrep", -- use ripgrep for :grep command
 	cursorline = true, -- highlight current line
 	guicursor = "a:blinkwait100-blinkoff600-blinkon600,i-ci:ver25",
 }
@@ -44,8 +42,8 @@ for k, v in pairs(options) do
 	vim.opt[k] = v
 end
 
-vim.g.mapleader = ","
-vim.g.maplocalleader = ","
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])

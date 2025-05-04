@@ -6,13 +6,6 @@ local keymap = vim.keymap.set
 
 keymap("", "Y", "y$", opts("Yank to end of line"))
 
--- keymap(
--- 	"n",
--- 	"<leader>gg",
--- 	"<cmd>!tmux new-window -c " .. vim.fn.getcwd() .. " -- lazygit <CR><CR>",
--- 	opts("opens lazygit")
--- )
-
 keymap("n", "<leader>u", vim.cmd.UndotreeToggle, opts("Toggle UndoTree"))
 
 keymap("n", "q:", "<nop>", opts(""))
@@ -37,10 +30,6 @@ keymap("n", "<A-h>", "gT", opts("Prev tab"))
 keymap("n", "<leader>in", function()
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ 0 }), { 0 })
 end, opts("Toggle inlay hints"))
-
--- go to start/end of line with bs/space
-keymap({ "n", "v" }, "<Space>", "$", opts("End of line"))
-keymap({ "n", "v" }, "<BS>", "0", opts("Start of line"))
 
 -- line shifting
 keymap("n", "<A-DOWN>", ":m .+1<CR>==", opts("Shift line down"))
