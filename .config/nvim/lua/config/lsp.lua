@@ -104,6 +104,10 @@ end
 
 local function create_user_commands()
 	vim.api.nvim_create_user_command("LspInfo", "checkhealth vim.lsp", { nargs = 0 })
+
+	vim.api.nvim_create_user_command("LspLog", function()
+		vim.cmd("tabnew " .. vim.lsp.get_log_path())
+	end, { nargs = 0 })
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {
