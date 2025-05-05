@@ -100,6 +100,15 @@ local function lsp_keymaps(bufnr)
 		end,
 		bufnr = bufnr,
 	})
+
+	utils.set_keymap({
+		desc = "toggle inlay hints",
+		key = "<leader>in",
+		cmd = function()
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ 0 }), { 0 })
+		end,
+		bufnr = bufnr,
+	})
 end
 
 local function create_user_commands()

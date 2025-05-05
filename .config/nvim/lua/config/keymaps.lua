@@ -26,11 +26,6 @@ keymap("n", "<leader>bb", ":BufferLinePick<CR>", opts("Pick buffer"))
 keymap("n", "<A-l>", "gt", opts("Next tab"))
 keymap("n", "<A-h>", "gT", opts("Prev tab"))
 
--- inlay hints
-keymap("n", "<leader>in", function()
-	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ 0 }), { 0 })
-end, opts("Toggle inlay hints"))
-
 -- line shifting
 keymap("n", "<A-DOWN>", ":m .+1<CR>==", opts("Shift line down"))
 keymap("n", "<A-UP>", ":m .-2<CR>==", opts("Shift line up"))
@@ -66,16 +61,3 @@ vim.api.nvim_create_user_command("W", "w", { nargs = 0 })
 vim.api.nvim_create_user_command("Wa", "wa", { nargs = 0 })
 vim.api.nvim_create_user_command("Q", "q", { nargs = 0 })
 vim.api.nvim_create_user_command("Qa", "qa", { nargs = 0 })
-
-local function toggle_quickfix()
-	local windows = vim.fn.getwininfo()
-	for _, win in pairs(windows) do
-		if win["quickfix"] == 1 then
-			vim.cmd.cclose()
-			return
-		end
-	end
-	vim.cmd([[botright copen]])
-end
-
-keymap("n", "<leader>qf", toggle_quickfix, opts("toggle quickfix window"))
