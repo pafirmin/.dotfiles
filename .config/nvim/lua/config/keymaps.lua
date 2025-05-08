@@ -55,6 +55,8 @@ keymap("v", ">", ">gv", opts(""))
 -- maintain yanked text on visual mode put
 keymap("v", "p", '"_dP', opts(""))
 
+keymap("n", "<leader>gb", ":Git blame<CR>", opts("Show git blame"))
+
 vim.api.nvim_create_user_command("Wq", "wq", { nargs = 0 })
 vim.api.nvim_create_user_command("Wqa", "wqa", { nargs = 0 })
 vim.api.nvim_create_user_command("W", "w", { nargs = 0 })

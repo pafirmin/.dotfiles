@@ -69,7 +69,7 @@ return {
 		},
 		{
 			desc = "grep over project",
-			"<leader>/",
+			"g/",
 			function()
 				require("snacks").picker.grep()
 			end,
@@ -104,7 +104,7 @@ return {
 		},
 		{
 			desc = "show git blame of line",
-			"<leader>gb",
+			"<leader>bl",
 			function()
 				require("snacks").git.blame_line()
 			end,
