@@ -5,4 +5,4 @@ require("config.lazy")
 require("config.lsp")
 require("vim._extui").enable({})
 
-vim.cmd.colorscheme("gruvbox-material")
+vim.cmd.colorscheme("melange")

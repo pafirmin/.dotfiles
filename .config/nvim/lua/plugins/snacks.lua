@@ -8,6 +8,9 @@ return {
 	opts = {
 		lazygit = {
 			enabled = true,
+			theme = {
+				selectedLineBgColor = { fg = "Substitute" },
+			},
 		},
 		images = {
 			enabled = true,
