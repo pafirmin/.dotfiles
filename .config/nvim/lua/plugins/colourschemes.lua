@@ -22,8 +22,20 @@ return {
 						vim.api.nvim_set_hl(0, src, { link = trgt })
 					end
 
+					local config = vim.fn["gruvbox_material#get_configuration"]()
+					local palette = vim.fn["gruvbox_material#get_palette"](
+						config.background,
+						config.foreground,
+						config.colors_override
+					)
+					local set_hl = vim.fn["gruvbox_material#highlight"]
+
+					set_hl("MatchParen", palette.orange, palette.bg4)
+					set_hl("CursorLineNr", palette.orange, palette.bg2)
+
 					hl_lnk("@tag.attribute", "Blue")
 					hl_lnk("@string", "Green")
+					hl_lnk("@constant.builtin.go", "Purple")
 				end,
 			})
 		end,
