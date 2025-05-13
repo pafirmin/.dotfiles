@@ -70,9 +70,11 @@ local config = {
 	settings = {
 		typescript = {
 			inlayHints = inlayHints,
+			updateImportsOnFileMove = "always",
 		},
 		javascript = {
 			inlayHints = inlayHints,
+			updateImportsOnFileMove = "always",
 		},
 	},
 	init_options = {

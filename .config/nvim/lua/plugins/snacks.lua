@@ -18,6 +18,14 @@ return {
 		picker = {
 			ui_select = true,
 		},
+		zen = {
+			toggles = {
+				dim = false,
+			},
+			show = {
+				statusline = true,
+			},
+		},
 		dashboard = {
 			sections = {
 				{ section = "header" },
@@ -110,6 +118,13 @@ return {
 			"<leader>bl",
 			function()
 				require("snacks").git.blame_line()
+			end,
+		},
+		{
+			desc = "enable zen mode",
+			"<leader>zz",
+			function()
+				require("snacks").zen()
 			end,
 		},
 	},
