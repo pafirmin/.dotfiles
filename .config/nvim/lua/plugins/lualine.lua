@@ -9,15 +9,20 @@ local M = {
 	event = "VeryLazy",
 	opts = {
 		options = {
+			component_separators = { left = "|", right = "|" },
 			theme = "auto",
 			refresh = {
 				statusline = 100,
+			},
+			disabled_filetypes = {
+				winbar = { "snacks_dashboard" },
 			},
 		},
 		sections = {
 			lualine_a = { "mode" },
 			lualine_b = {
 				"branch",
+				"diff",
 				"diagnostics",
 				{
 					"macro",
@@ -33,14 +38,12 @@ local M = {
 				},
 			},
 			lualine_c = {
-				{
-					"filename",
-					path = 1,
-					shorting_target = 0,
-				},
+				{ "filename", path = 1, shorting_target = 0 },
+				"searchcount",
 			},
-			lualine_x = { "filetype" },
+			lualine_x = { "lsp_status", "encoding", "filetype" },
 			lualine_y = { "progress" },
+			lualine_z = {},
 		},
 	},
 	config = function(_, opts)
