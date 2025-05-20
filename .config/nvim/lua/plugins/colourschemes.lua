@@ -9,7 +9,7 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.g.gruvbox_material_enable_italic = 0
+			vim.g.gruvbox_material_enable_italic = 1
 			vim.g.gruvbox_material_enable_bold = 1
 
 			local grpid = vim.api.nvim_create_augroup("custom_highlights_gruvboxmaterial", {})
@@ -31,10 +31,22 @@ return {
 
 					set_hl("MatchParen", palette.orange, palette.bg4)
 					set_hl("CursorLineNr", palette.orange, palette.bg2)
+					set_hl("@tag.attribute", palette.fg1, palette.none, "italic")
 
-					hl_lnk("@tag.attribute", "Blue")
-					hl_lnk("@string", "Green")
+					hl_lnk("@variable.member", "Normal")
+					hl_lnk("@property", "Normal")
+					hl_lnk("@function", "Normal")
+					hl_lnk("@function.call", "Normal")
+					hl_lnk("@function.method", "Normal")
+					hl_lnk("@function.method.call", "Normal")
+					hl_lnk("@string", "GreenItalic")
 					hl_lnk("@constant.builtin.go", "Purple")
+					hl_lnk("@constant.builtin", "Purple")
+					hl_lnk("@keyword", "Red")
+					hl_lnk("@type", "Yellow")
+					hl_lnk("@type.builtin", "Yellow")
+					set_hl("@punctuation.bracket", palette.grey2, palette.none)
+					set_hl("@constructor.lua", palette.grey2, palette.none)
 				end,
 			})
 		end,
