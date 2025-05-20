@@ -1,3 +1,4 @@
+local utils = require("utils")
 -------------[
 -- status bar
 -------------]
@@ -41,8 +42,40 @@ local M = {
 				{ "filename", path = 1, shorting_target = 0 },
 				"searchcount",
 			},
-			lualine_x = { "lsp_status", "encoding", "filetype" },
+			lualine_x = {
+				{
+					"lsp_status",
+					cond = function()
+						return vim.o.columns > 90
+					end,
+				},
+				"encoding",
+				"filetype",
+			},
 			lualine_y = { "progress" },
+			lualine_z = {},
+		},
+		inactive_winbar = {
+			lualine_a = {},
+			lualine_b = {},
+			lualine_c = {
+				{
+					"filename",
+					path = 1,
+					cond = (function()
+						local show = false
+						vim.keymap.set("n", "yof", function()
+							show = not show
+						end)
+
+						return function()
+							return show
+						end
+					end)(),
+				},
+			},
+			lualine_x = {},
+			lualine_y = {},
 			lualine_z = {},
 		},
 	},
